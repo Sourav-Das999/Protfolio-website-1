@@ -1,17 +1,18 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { imageUrl } from "../utils/imageUrl";
 
 const Footer = () => {
   return (
     <footer className="w-full bg-[#0f0715] pt-12 font-['Sora',sans-serif] overflow-hidden">
-      {/* 
-        Footer Container with Exact Figma Radius: border-radius: 100px 100px 0px 0px 
-        Footer background image is served from public/image/footer-bg.png.
-      */}
-      <div
+      {/* Footer Container with Motion Scroll Reveal */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative w-full rounded-t-[60px] md:rounded-t-[100px] text-white pt-16 sm:pt-20 pb-8 px-6 sm:px-12 md:px-20 bg-cover bg-center bg-no-repeat overflow-hidden"
         style={{
-          // Primary: Custom CSS Gradient matching Figma glow
           background: `
             radial-gradient(circle at 10% 80%, rgba(0, 210, 255, 0.45) 0%, transparent 40%),
             radial-gradient(circle at 80% 90%, rgba(255, 0, 200, 0.5) 0%, transparent 45%),
@@ -19,7 +20,7 @@ const Footer = () => {
           `,
         }}
       >
-        {/* Optional: If you export the image from Figma, uncomment line below */}
+        {/* Background Image Overlay */}
         <div
           className="absolute inset-0 bg-cover bg-center opacity-100 pointer-events-none"
           style={{ backgroundImage: `url("${imageUrl("footer-bg.png")}")` }}
@@ -47,13 +48,15 @@ const Footer = () => {
               {/* Social Links */}
               <div className="flex items-center gap-3 pt-2">
                 {["f", "📷", "✕", "in"].map((icon, idx) => (
-                  <a
+                  <motion.a
                     key={idx}
                     href="#"
-                    className="w-8 h-8 rounded-full bg-white/10 hover:bg-white hover:text-[#8750f7] text-white flex items-center justify-center text-xs font-semibold transition-all duration-300"
+                    whileHover={{ scale: 1.15, y: -3 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-8 h-8 rounded-full bg-white/10 hover:bg-white hover:text-[#8750f7] text-white flex items-center justify-center text-xs font-semibold transition-colors duration-300"
                   >
                     {icon}
-                  </a>
+                  </motion.a>
                 ))}
               </div>
             </div>
@@ -136,9 +139,11 @@ const Footer = () => {
                   className="w-full bg-white text-gray-900 placeholder-gray-400 text-xs sm:text-sm px-5 py-3 rounded-full outline-none shadow-md"
                   required
                 />
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   type="submit"
-                  className="w-11 h-11 bg-black text-white rounded-full flex items-center justify-center shrink-0 hover:scale-105 transition-transform active:scale-95 shadow-md cursor-pointer"
+                  className="w-11 h-11 bg-black text-white rounded-full flex items-center justify-center shrink-0 shadow-md cursor-pointer"
                   aria-label="Subscribe"
                 >
                   <svg
@@ -154,7 +159,7 @@ const Footer = () => {
                       d="M7 17L17 7M17 7H7M17 7V17"
                     />
                   </svg>
-                </button>
+                </motion.button>
               </form>
             </div>
           </div>
@@ -194,7 +199,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </footer>
   );
 };

@@ -1,9 +1,15 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { imageUrl } from "../utils/imageUrl";
 
 const VideoEditorBadge = ({ width = 300, height = 300, className = "" }) => {
   return (
-    <div className={`inline-flex items-center justify-center ${className}`}>
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className={`inline-flex items-center justify-center cursor-pointer ${className}`}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 500 500"
@@ -103,7 +109,7 @@ const VideoEditorBadge = ({ width = 300, height = 300, className = "" }) => {
         {/* Center Play Button */}
         <polygon points="243,238 263,250 243,262" fill="#FFFFFF" />
       </svg>
-    </div>
+    </motion.div>
   );
 };
 

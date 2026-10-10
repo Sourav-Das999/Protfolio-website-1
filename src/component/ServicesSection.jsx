@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const servicesData = [
   {
@@ -66,7 +67,13 @@ const servicesData = [
 const ServicesSection = () => {
   return (
     <section className="bg-[#140C1C] text-white py-16 md:py-24 px-4 sm:px-6 md:px-12 font-['Sora',sans-serif]">
-      <div className="max-w-6xl mx-auto flex flex-col items-center">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="max-w-6xl mx-auto flex flex-col items-center"
+      >
         {/* Subtitle */}
         <span className="text-[11px] font-bold tracking-[2px] text-[#8b5cf6] uppercase block mb-3 text-center">
           MY SERVICES
@@ -88,10 +95,19 @@ const ServicesSection = () => {
 
         {/* Services Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-10">
-          {servicesData.map((service) => (
-            <div
+          {servicesData.map((service, index) => (
+            <motion.div
               key={service.id}
-              className="bg-[#05020a] border border-[#1a1329] hover:border-purple-800/50 rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.2,
+                ease: "easeOut",
+              }}
+              whileHover={{ y: -6 }}
+              className="bg-[#05020a] border border-[#1a1329] hover:border-purple-800/50 rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-colors duration-300 shadow-xl"
             >
               <div>
                 {/* Custom Icon Circle */}
@@ -122,15 +138,17 @@ const ServicesSection = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Let's Contact With Me Full-Width Button */}
         <div className="w-full">
-          <a
+          <motion.a
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.98 }}
             href="#contact"
-            className="flex items-center justify-center gap-2 text-white font-semibold text-sm sm:text-base w-full h-[72px] transition-all duration-300 hover:opacity-90 hover:scale-[1.01] shadow-lg shadow-purple-950/40"
+            className="flex items-center justify-center gap-2 text-white font-semibold text-sm sm:text-base w-full h-[72px] transition-colors duration-300 shadow-lg shadow-purple-950/40 cursor-pointer"
             style={{
               background:
                 "linear-gradient(90deg, #8750F7 0%, #2A1454 51%, #8750F7 100%)",
@@ -152,9 +170,9 @@ const ServicesSection = () => {
                 d="M7 17L17 7M17 7H7M17 7V17"
               />
             </svg>
-          </a>
+          </motion.a>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

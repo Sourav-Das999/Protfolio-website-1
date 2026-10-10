@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const keywordsTop = [
   "GRAPHIC",
@@ -24,7 +25,13 @@ const keywordsBottom = [
 
 const MarqueeSection = () => {
   return (
-    <div className="relative w-full bg-[#140C1C] py-10 sm:py-16 md:py-20 overflow-hidden flex flex-col justify-center items-center gap-2 sm:gap-4 md:gap-6 font-['Sora',sans-serif]">
+    <motion.div 
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="relative w-full bg-[#140C1C] py-10 sm:py-16 md:py-20 overflow-hidden flex flex-col justify-center items-center gap-2 sm:gap-4 md:gap-6 font-['Sora',sans-serif]"
+    >
       {/* 1. Top Purple Marquee Strip (Tilted Clockwise) */}
       <div className="w-[130%] sm:w-[120%] bg-[#8750F7] text-white py-3 sm:py-5 md:py-7 transform rotate-[2deg] sm:rotate-[2.5deg] shadow-2xl z-10 overflow-hidden flex whitespace-nowrap">
         <div className="animate-marquee-ltr flex items-center shrink-0">
@@ -86,7 +93,7 @@ const MarqueeSection = () => {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

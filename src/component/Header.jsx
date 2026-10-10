@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { imageUrl } from "../utils/imageUrl";
 
 const Header = () => {
@@ -12,11 +13,29 @@ const Header = () => {
     setIsMobileMenuOpen(false);
   };
 
+  // Smooth scroll handler function
+  const handleNavClick = (e, targetId) => {
+    e.preventDefault();
+    closeMobileMenu();
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   return (
-    <header className="bg-[#050709] text-white px-4 md:px-8 py-4 sticky top-0 z-50 shadow-[0_12px_24px_-6px_rgba(168,85,247,0.25)]">
+    <motion.header
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="bg-[#050709] text-white px-4 md:px-8 py-4 sticky top-0 z-50 shadow-[0_12px_24px_-6px_rgba(168,85,247,0.25)]"
+    >
       <div className="flex items-center justify-between w-full mx-auto">
         {/* Logo Section */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 cursor-pointer" onClick={(e) => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <img
             src={imageUrl("logo.png")}
             alt="logo"
@@ -28,28 +47,43 @@ const Header = () => {
         <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-white/50 font-medium text-sm xl:text-base">
           <a
             href="#services"
-            className="hover:text-purple-400 transition-colors"
+            onClick={(e) => handleNavClick(e, "services")}
+            className="hover:text-purple-400 transition-colors cursor-pointer"
           >
             Services
           </a>
-          <a href="#works" className="hover:text-purple-400 transition-colors">
+          <a 
+            href="#works" 
+            onClick={(e) => handleNavClick(e, "works")}
+            className="hover:text-purple-400 transition-colors cursor-pointer"
+          >
             Works
           </a>
-          <a href="#resume" className="hover:text-purple-400 transition-colors">
+          <a 
+            href="#resume" 
+            onClick={(e) => handleNavClick(e, "resume")}
+            className="hover:text-purple-400 transition-colors cursor-pointer"
+          >
             Resume
           </a>
-          <a href="#skills" className="hover:text-purple-400 transition-colors">
+          <a 
+            href="#skills" 
+            onClick={(e) => handleNavClick(e, "skills")}
+            className="hover:text-purple-400 transition-colors cursor-pointer"
+          >
             Skills
           </a>
           <a
             href="#testimonials"
-            className="hover:text-purple-400 transition-colors"
+            onClick={(e) => handleNavClick(e, "testimonials")}
+            className="hover:text-purple-400 transition-colors cursor-pointer"
           >
             Testimonials
           </a>
           <a
             href="#contact"
-            className="hover:text-purple-400 transition-colors"
+            onClick={(e) => handleNavClick(e, "contact")}
+            className="hover:text-purple-400 transition-colors cursor-pointer"
           >
             Contact
           </a>
@@ -60,7 +94,9 @@ const Header = () => {
           {/* Social Icons Container (Hidden on small screens) */}
           <div className="hidden xl:flex items-center gap-3">
             {/* Facebook Icon */}
-            <a
+            <motion.a
+              whileHover={{ scale: 1.15, y: -2 }}
+              whileTap={{ scale: 0.95 }}
               href="#"
               className="w-9 h-9 rounded-full border border-gray-700 flex items-center justify-center text-gray-300 hover:border-purple-500 hover:text-purple-400 transition-all"
             >
@@ -76,10 +112,12 @@ const Header = () => {
                   fill="white"
                 />
               </svg>
-            </a>
+            </motion.a>
 
             {/* LinkedIn Icon */}
-            <a
+            <motion.a
+              whileHover={{ scale: 1.15, y: -2 }}
+              whileTap={{ scale: 0.95 }}
               href="#"
               className="w-9 h-9 rounded-full border border-gray-700 flex items-center justify-center text-gray-300 hover:border-purple-500 hover:text-purple-400 transition-all"
             >
@@ -95,10 +133,12 @@ const Header = () => {
                   fill="white"
                 />
               </svg>
-            </a>
+            </motion.a>
 
             {/* GitHub Icon */}
-            <a
+            <motion.a
+              whileHover={{ scale: 1.15, y: -2 }}
+              whileTap={{ scale: 0.95 }}
               href="#"
               className="w-9 h-9 rounded-full border border-gray-700 flex items-center justify-center text-gray-300 hover:border-purple-500 hover:text-purple-400 transition-all"
             >
@@ -114,10 +154,12 @@ const Header = () => {
                   fill="white"
                 />
               </svg>
-            </a>
+            </motion.a>
 
             {/* Dribbble / Web Icon */}
-            <a
+            <motion.a
+              whileHover={{ scale: 1.15, y: -2 }}
+              whileTap={{ scale: 0.95 }}
               href="#"
               className="w-9 h-9 rounded-full border border-gray-700 flex items-center justify-center text-gray-300 hover:border-purple-500 hover:text-purple-400 transition-all"
             >
@@ -133,13 +175,16 @@ const Header = () => {
                   fill="white"
                 />
               </svg>
-            </a>
+            </motion.a>
           </div>
 
-          {/* CTA Button (Responsive sizes) */}
-          <a
+          {/* CTA Button */}
+          <motion.a
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             href="#contact"
-            className="flex items-center justify-center gap-2 text-white font-medium text-xs sm:text-sm w-[130px] sm:w-[179px] h-[40px] sm:h-[49px] rounded-full transition-all duration-300 hover:opacity-90 hover:scale-105"
+            onClick={(e) => handleNavClick(e, "contact")}
+            className="flex items-center justify-center gap-2 text-white font-medium text-xs sm:text-sm w-[130px] sm:w-[179px] h-[40px] sm:h-[49px] rounded-full transition-all duration-300 shadow-md cursor-pointer"
             style={{
               background:
                 "linear-gradient(90deg, #8750F7 0%, #2A1454 51%, #8750F7 100%)",
@@ -160,16 +205,15 @@ const Header = () => {
                 d="M7 17L17 7M17 7H7M17 7V17"
               />
             </svg>
-          </a>
+          </motion.a>
 
           {/* Mobile 3-Line (Hamburger) Toggle Button */}
           <button
             onClick={toggleMobileMenu}
-            className="lg:hidden p-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800/60 focus:outline-none transition-colors"
+            className="lg:hidden p-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800/60 focus:outline-none transition-colors cursor-pointer"
             aria-label="Toggle Menu"
           >
             {isMobileMenuOpen ? (
-              // Close (X) Icon
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -184,7 +228,6 @@ const Header = () => {
                 />
               </svg>
             ) : (
-              // 3-Line (Hamburger) Icon
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -203,56 +246,64 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation Menu Dropdown */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden mt-4 pt-4 pb-3 border-t border-gray-800/80 bg-[#050709] rounded-b-2xl animate-fadeIn">
-          <nav className="flex flex-col gap-4 text-center text-white/80 font-medium text-sm">
-            <a
-              href="#services"
-              onClick={closeMobileMenu}
-              className="py-1 hover:text-purple-400 transition-colors"
-            >
-              Services
-            </a>
-            <a
-              href="#works"
-              onClick={closeMobileMenu}
-              className="py-1 hover:text-purple-400 transition-colors"
-            >
-              Works
-            </a>
-            <a
-              href="#resume"
-              onClick={closeMobileMenu}
-              className="py-1 hover:text-purple-400 transition-colors"
-            >
-              Resume
-            </a>
-            <a
-              href="#skills"
-              onClick={closeMobileMenu}
-              className="py-1 hover:text-purple-400 transition-colors"
-            >
-              Skills
-            </a>
-            <a
-              href="#testimonials"
-              onClick={closeMobileMenu}
-              className="py-1 hover:text-purple-400 transition-colors"
-            >
-              Testimonials
-            </a>
-            <a
-              href="#contact"
-              onClick={closeMobileMenu}
-              className="py-1 hover:text-purple-400 transition-colors"
-            >
-              Contact
-            </a>
-          </nav>
-        </div>
-      )}
-    </header>
+      {/* Mobile Navigation Menu Dropdown with Framer Motion */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="lg:hidden mt-4 pt-4 pb-3 border-t border-gray-800/80 bg-[#050709] rounded-b-2xl overflow-hidden"
+          >
+            <nav className="flex flex-col gap-4 text-center text-white/80 font-medium text-sm">
+              <a
+                href="#services"
+                onClick={(e) => handleNavClick(e, "services")}
+                className="py-1 hover:text-purple-400 transition-colors cursor-pointer"
+              >
+                Services
+              </a>
+              <a
+                href="#works"
+                onClick={(e) => handleNavClick(e, "works")}
+                className="py-1 hover:text-purple-400 transition-colors cursor-pointer"
+              >
+                Works
+              </a>
+              <a
+                href="#resume"
+                onClick={(e) => handleNavClick(e, "resume")}
+                className="py-1 hover:text-purple-400 transition-colors cursor-pointer"
+              >
+                Resume
+              </a>
+              <a
+                href="#skills"
+                onClick={(e) => handleNavClick(e, "skills")}
+                className="py-1 hover:text-purple-400 transition-colors cursor-pointer"
+              >
+                Skills
+              </a>
+              <a
+                href="#testimonials"
+                onClick={(e) => handleNavClick(e, "testimonials")}
+                className="py-1 hover:text-purple-400 transition-colors cursor-pointer"
+              >
+                Testimonials
+              </a>
+              <a
+                href="#contact"
+                onClick={(e) => handleNavClick(e, "contact")}
+                className="py-1 hover:text-purple-400 transition-colors cursor-pointer"
+              >
+                Contact
+              </a>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 };
 

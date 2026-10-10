@@ -25,31 +25,47 @@ function App() {
       <TrustedClients />
 
       {/* Skills Section */}
-      <SkillsSection />
+      <div id="skills">
+        <SkillsSection />
+      </div>
 
       {/* About Section */}
-      <AboutSection />
+      <div id="about">
+        <AboutSection />
+      </div>
 
       {/* Services Section */}
-      <ServicesSection />
+      <div id="services">
+        <ServicesSection />
+      </div>
 
-      {/* Recent Work Section */}
-      <RecentWorkSection />
+      {/* Recent Work / Works Section */}
+      <div id="works">
+        <RecentWorkSection />
+      </div>
 
       {/* Marquee Section */}
       <MarqueeSection />
 
-      {/* Background Section */}
-      <BackgroundSection />
+      {/* Background / Resume Section */}
+      <div id="resume">
+        <BackgroundSection />
+      </div>
 
       {/* Testimonials Section */}
-      <TestimonialsSection />
+      <div id="testimonials">
+        <TestimonialsSection />
+      </div>
 
       {/* Recent Blog Section */}
-      <RecentBlogSection />
+      <div id="blog">
+        <RecentBlogSection />
+      </div>
 
-      {/* Footer Section */}
-      <Footer />
+      {/* Footer / Contact Section */}
+      <div id="contact">
+        <Footer />
+      </div>
     </div>
   );
 }

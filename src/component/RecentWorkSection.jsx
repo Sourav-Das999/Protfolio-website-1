@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import { imageUrl } from "../utils/imageUrl";
 
 const projectsData = [
@@ -67,7 +68,13 @@ const RecentWorkSection = () => {
 
   return (
     <section className="bg-[#140C1C] text-white py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 font-['Sora',sans-serif] overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+      <motion.div 
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="max-w-7xl mx-auto"
+      >
         {/* Header Section */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-6">
           <div>
@@ -93,10 +100,12 @@ const RecentWorkSection = () => {
 
           {/* Navigation Controls */}
           <div className="flex items-center gap-3">
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
               onClick={handlePrev}
               disabled={isAnimating}
-              className="w-11 h-11 md:w-12 md:h-12 rounded-full border border-gray-800 bg-[#140c1d] flex items-center justify-center text-gray-300 hover:border-[#8750F7] hover:bg-[#8750F7] hover:text-white transition-all duration-300 active:scale-95 cursor-pointer disabled:opacity-50"
+              className="w-11 h-11 md:w-12 md:h-12 rounded-full border border-gray-800 bg-[#140c1d] flex items-center justify-center text-gray-300 hover:border-[#8750F7] hover:bg-[#8750F7] hover:text-white transition-colors duration-300 cursor-pointer disabled:opacity-50"
               aria-label="Previous Project"
             >
               <svg
@@ -112,12 +121,14 @@ const RecentWorkSection = () => {
                   d="M15 19l-7-7 7-7"
                 />
               </svg>
-            </button>
+            </motion.button>
 
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
               onClick={handleNext}
               disabled={isAnimating}
-              className="w-11 h-11 md:w-12 md:h-12 rounded-full border border-gray-800 bg-[#140c1d] flex items-center justify-center text-gray-300 hover:border-[#8750F7] hover:bg-[#8750F7] hover:text-white transition-all duration-300 active:scale-95 cursor-pointer disabled:opacity-50"
+              className="w-11 h-11 md:w-12 md:h-12 rounded-full border border-gray-800 bg-[#140c1d] flex items-center justify-center text-gray-300 hover:border-[#8750F7] hover:bg-[#8750F7] hover:text-white transition-colors duration-300 cursor-pointer disabled:opacity-50"
               aria-label="Next Project"
             >
               <svg
@@ -133,11 +144,11 @@ const RecentWorkSection = () => {
                   d="M9 5l7 7-7 7"
                 />
               </svg>
-            </button>
+            </motion.button>
           </div>
         </div>
 
-        {/* Endless Circular Carousel Window (Mobile: 1 Card, Desktop: 3 Cards) */}
+        {/* Endless Circular Carousel Window */}
         <div className="w-full overflow-hidden">
           <div
             className={`flex gap-6 ${
@@ -217,7 +228,7 @@ const RecentWorkSection = () => {
             />
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

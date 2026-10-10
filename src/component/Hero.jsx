@@ -1,34 +1,52 @@
 import React from "react";
+import { motion } from "framer-motion";
 import VideoEditorBadge from "./VideoEditorBadge";
 import { imageUrl } from "../utils/imageUrl";
 
 const Hero = () => {
   return (
     <section className="bg-[#140C1C] text-white min-h-screen relative overflow-hidden px-4 md:px-0 py-6 flex flex-col justify-center font-sora pt-24 sm:pt-32 md:pt-40">
+      
       {/* 1. Big Background Heading: HELLO (Badge) MOTION */}
-      <div className="relative z-0 flex items-center justify-center gap-2 sm:gap-4 md:gap-6 flex-nowrap text-center -top-4 sm:-top-12 md:-top-20 w-full max-w-full px-2">
+      <motion.div 
+        initial={{ opacity: 0, y: -40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="relative z-0 flex items-center justify-center gap-2 sm:gap-4 md:gap-6 flex-nowrap text-center -top-4 sm:-top-12 md:-top-20 w-full max-w-full px-2"
+      >
         <h1 className="text-[clamp(2rem,8vw,180px)] font-semibold tracking-wider text-white uppercase whitespace-nowrap leading-none shrink-0">
           Hello
         </h1>
 
         {/* Rotating Circular Badge */}
-        <div className="shrink-0 flex items-center justify-center">
+        <motion.div 
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="shrink-0 flex items-center justify-center"
+        >
           <VideoEditorBadge
             width={180}
             height={180}
             className="w-[clamp(40px,8vw,180px)] h-[clamp(40px,8vw,180px)]"
           />
-        </div>
+        </motion.div>
 
         <h1 className="text-[clamp(2rem,8vw,180px)] font-semibold tracking-wider text-white uppercase whitespace-nowrap leading-none shrink-0">
           Motion
         </h1>
-      </div>
+      </motion.div>
 
       {/* 2. Main Content Area */}
       <div className="relative z-10 w-full mx-auto mt-2 sm:-mt-6 md:mt-0 grid grid-cols-1 md:grid-cols-12 gap-8 items-center px-4 sm:px-6 lg:px-18">
+        
         {/* Left Side: Floating Badge / Cursor (Desktop Only) */}
-        <div className="hidden md:flex md:col-span-3 flex-col items-end pr-4 relative">
+        <motion.div 
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="hidden md:flex md:col-span-3 flex-col items-end pr-4 relative"
+        >
           <div className="relative border-2 border-dashed border-white/40 bg-white/5 backdrop-blur-md px-9 py-12 rounded-2xl max-w-[274px] shadow-2xl -top-43 left-80">
             <div className="flex items-start gap-3">
               <svg
@@ -52,7 +70,11 @@ const Hero = () => {
             <span className="absolute -top-2 -right-2 w-4 h-4 bg-black border-2 border-white rounded-full"></span>
             <span className="absolute -bottom-2 -right-2 w-4 h-4 bg-black border-2 border-white rounded-full"></span>
 
-            <div className="absolute -bottom-16 -left-7 flex items-center z-20">
+            <motion.div 
+              animate={{ y: [0, -6, 0] }}
+              transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+              className="absolute -bottom-16 -left-7 flex items-center z-20"
+            >
               <svg
                 width="45"
                 height="48"
@@ -114,22 +136,33 @@ const Hero = () => {
               <span className="bg-[#7E4AE7] text-white text-xs font-semibold px-4 py-1.5 rounded-2xl shadow-lg mt-20 -ml-25">
                 Gerold
               </span>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Center: Main Image */}
-        <div className="md:col-span-6 flex justify-center">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="md:col-span-6 flex justify-center"
+        >
           <img
             src={imageUrl("hero-image.png")}
             alt="Gerold - Video Editor"
             className="w-full max-w-[320px] sm:max-w-[420px] md:max-w-[613px] h-auto md:h-[780px] object-cover"
           />
-        </div>
+        </motion.div>
 
-        {/* Right Side: Bio Text & Stats (Centered container, Left text) */}
-        <div className="md:col-span-3 flex justify-center w-full">
+        {/* Right Side: Bio Text & Stats */}
+        <motion.div 
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="md:col-span-3 flex justify-center w-full"
+        >
           <div className="flex flex-col justify-between gap-6 md:gap-8 relative w-full max-w-[310px] items-start text-left">
+            
             {/* Bio Paragraph */}
             <p className="text-sm sm:text-base text-gray-300/80 leading-relaxed font-normal text-left w-full">
               My role as a amplify tha story through my careful{" "}
@@ -150,7 +183,11 @@ const Hero = () => {
               </div>
 
               {/* Arrow Button */}
-              <button className="absolute right-0 md:-right-35 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-purple-500/50 bg-[#1d132b]/50 flex items-center justify-center text-purple-400 hover:bg-purple-600 hover:text-white transition-all">
+              <motion.button 
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="absolute right-0 md:-right-35 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-purple-500/50 bg-[#1d132b]/50 flex items-center justify-center text-purple-400 hover:bg-purple-600 hover:text-white transition-all cursor-pointer"
+              >
                 <svg
                   className="w-5 h-5"
                   fill="none"
@@ -164,12 +201,16 @@ const Hero = () => {
                     d="M5 10l7-7m0 0l7 7m-7-7v18"
                   />
                 </svg>
-              </button>
+              </motion.button>
             </div>
 
             {/* Bottom Circle Widget */}
             <div className="flex flex-col items-start relative w-full">
-              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-[#130d1d] border border-gray-800/80 flex flex-col items-center justify-center gap-3 shadow-xl">
+              <motion.div 
+                whileHover={{ rotate: 45 }}
+                transition={{ type: "spring", stiffness: 200 }}
+                className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-[#130d1d] border border-gray-800/80 flex flex-col items-center justify-center gap-3 shadow-xl cursor-pointer"
+              >
                 <svg
                   className="w-5 h-5 text-white"
                   fill="none"
@@ -183,11 +224,13 @@ const Hero = () => {
                     d="M7 17L17 7M17 7H7M17 7V17"
                   />
                 </svg>
-              </div>
+              </motion.div>
               <div className="w-5 h-5 rounded-full bg-[#7E4AE7] shadow-[0_0_12px_#7E4AE7] absolute top-12 left-12 md:top-auto md:left-auto md:-mt-13 md:ml-12"></div>
             </div>
+
           </div>
-        </div>
+        </motion.div>
+
       </div>
     </section>
   );

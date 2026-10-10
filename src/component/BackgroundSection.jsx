@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { imageUrl } from "../utils/imageUrl";
 
 // Sample data for Experiences, Education, and Awards
@@ -115,7 +116,13 @@ const BackgroundSection = () => {
       {/* Radial Purple Glow Background Effect */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#8750f7]/15 blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="max-w-5xl mx-auto relative z-10 flex flex-col items-center">
+      <motion.div 
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="max-w-5xl mx-auto relative z-10 flex flex-col items-center"
+      >
         {/* Subtitle */}
         <span className="text-[11px] font-bold tracking-[2.5px] text-[#8b5cf6] uppercase block mb-3 text-center">
           BEHIND THE PIXELS
@@ -154,62 +161,77 @@ const BackgroundSection = () => {
         </div>
 
         {/* Main List Box Container */}
-        <div className="w-full bg-[#140c1d]/60 border border-[#1d1429] rounded-3xl p-6 sm:p-8 md:p-10 divide-y divide-[#1d1429] shadow-2xl backdrop-blur-sm">
-          {backgroundData[activeTab]?.map((item) => (
-            <div
-              key={item.id}
-              className="py-6 first:pt-0 last:pb-0 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 group hover:bg-[#140c1d]/30 transition-all duration-300 rounded-2xl px-2 sm:px-4"
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="w-full bg-[#140c1d]/60 border border-[#1d1429] rounded-3xl p-6 sm:p-8 md:p-10 divide-y divide-[#1d1429] shadow-2xl backdrop-blur-sm"
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
             >
-              {/* Left Side: Icon + Details */}
-              <div className="flex items-start gap-4 sm:gap-6 max-w-2xl">
-                {/* Icon Box (Renders image if iconSrc exists, otherwise renders SVG icon) */}
-                <div>
-                  {item.iconSrc ? (
-                    <img
-                      src={imageUrl(item.iconSrc)}
-                      alt={item.company}
-                      className="w-full h-full object-contain"
-                    />
-                  ) : (
-                    item.icon
-                  )}
-                </div>
-
-                {/* Info Text */}
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-white tracking-wide mb-1">
-                    {item.title}
-                  </h3>
-                  <span className="text-[11px] font-bold tracking-[1.5px] text-[#8b5cf6] uppercase block mb-3">
-                    {item.company}
-                  </span>
-                  <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-
-              {/* Right Side: Date Badge */}
-              <div className="flex items-center gap-2 text-[20px] sm:text-sm text-white/60 px-4 py-2 rounded-xl shrink-0 self-start md:self-start">
-                <svg
-                  width="18"
-                  height="20"
-                  viewBox="0 0 18 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+              {backgroundData[activeTab]?.map((item) => (
+                <div
+                  key={item.id}
+                  className="py-6 first:pt-0 last:pb-0 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 group hover:bg-[#140c1d]/30 transition-all duration-300 rounded-2xl px-2 sm:px-4"
                 >
-                  <path
-                    d="M5 0.3125C4.97396 0.130209 4.86979 0.026041 4.6875 0C4.50521 0.026041 4.40104 0.130209 4.375 0.3125V2.5H2.5C1.79688 2.52604 1.21094 2.77344 0.742188 3.24219C0.273438 3.71094 0.0260417 4.29688 0 5V6.875V7.5V17.5C0.0260417 18.2031 0.273438 18.7891 0.742188 19.2578C1.21094 19.7266 1.79688 19.974 2.5 20H15C15.7031 19.974 16.2891 19.7266 16.7578 19.2578C17.2266 18.7891 17.474 18.2031 17.5 17.5V7.5V6.875V5C17.474 4.29688 17.2266 3.71094 16.7578 3.24219C16.2891 2.77344 15.7031 2.52604 15 2.5H13.125V0.3125C13.099 0.130209 12.9948 0.026041 12.8125 0C12.6302 0.026041 12.526 0.130209 12.5 0.3125V2.5H5V0.3125ZM0.625 7.5H16.875V17.5C16.849 18.0208 16.6667 18.4635 16.3281 18.8281C15.9635 19.1667 15.5208 19.349 15 19.375H2.5C1.97917 19.349 1.53646 19.1667 1.17188 18.8281C0.833333 18.4635 0.651042 18.0208 0.625 17.5V7.5ZM4.375 3.125V4.6875C4.40104 4.86979 4.50521 4.97396 4.6875 5C4.86979 4.97396 4.97396 4.86979 5 4.6875V3.125H12.5V4.6875C12.526 4.86979 12.6302 4.97396 12.8125 5C12.9948 4.97396 13.099 4.86979 13.125 4.6875V3.125H15C15.5208 3.15104 15.9635 3.33333 16.3281 3.67188C16.6667 4.03646 16.849 4.47917 16.875 5V6.875H0.625V5C0.651042 4.47917 0.833333 4.03646 1.17188 3.67188C1.53646 3.33333 1.97917 3.15104 2.5 3.125H4.375ZM13.0469 11.1719C13.151 11.0156 13.151 10.8594 13.0469 10.7031C12.8906 10.599 12.7344 10.599 12.5781 10.7031L8.125 15.1953L5.54688 12.5781C5.39062 12.474 5.23438 12.474 5.07812 12.5781C4.97396 12.7344 4.97396 12.8906 5.07812 13.0469L7.89062 15.8594C8.04688 15.9635 8.20312 15.9635 8.35938 15.8594L13.0469 11.1719Z"
-                    fill="#8750F7"
-                  />
-                </svg>
+                  {/* Left Side: Icon + Details */}
+                  <div className="flex items-start gap-4 sm:gap-6 max-w-2xl">
+                    <div>
+                      {item.iconSrc ? (
+                        <img
+                          src={imageUrl(item.iconSrc)}
+                          alt={item.company}
+                          className="w-full h-full object-contain"
+                        />
+                      ) : (
+                        item.icon
+                      )}
+                    </div>
 
-                <span>{item.date}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+                    {/* Info Text */}
+                    <div>
+                      <h3 className="text-lg sm:text-xl font-bold text-white tracking-wide mb-1">
+                        {item.title}
+                      </h3>
+                      <span className="text-[11px] font-bold tracking-[1.5px] text-[#8b5cf6] uppercase block mb-3">
+                        {item.company}
+                      </span>
+                      <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Right Side: Date Badge */}
+                  <div className="flex items-center gap-2 text-[20px] sm:text-sm text-white/60 px-4 py-2 rounded-xl shrink-0 self-start md:self-start">
+                    <svg
+                      width="18"
+                      height="20"
+                      viewBox="0 0 18 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5 0.3125C4.97396 0.130209 4.86979 0.026041 4.6875 0C4.50521 0.026041 4.40104 0.130209 4.375 0.3125V2.5H2.5C1.79688 2.52604 1.21094 2.77344 0.742188 3.24219C0.273438 3.71094 0.0260417 4.29688 0 5V6.875V7.5V17.5C0.0260417 18.2031 0.273438 18.7891 0.742188 19.2578C1.21094 19.7266 1.79688 19.974 2.5 20H15C15.7031 19.974 16.2891 19.7266 16.7578 19.2578C17.2266 18.7891 17.474 18.2031 17.5 17.5V7.5V6.875V5C17.474 4.29688 17.2266 3.71094 16.7578 3.24219C16.2891 2.77344 15.7031 2.52604 15 2.5H13.125V0.3125C13.099 0.130209 12.9948 0.026041 12.8125 0C12.6302 0.026041 12.526 0.130209 12.5 0.3125V2.5H5V0.3125ZM0.625 7.5H16.875V17.5C16.849 18.0208 16.6667 18.4635 16.3281 18.8281C15.9635 19.1667 15.5208 19.349 15 19.375H2.5C1.97917 19.349 1.53646 19.1667 1.17188 18.8281C0.833333 18.4635 0.651042 18.0208 0.625 17.5V7.5ZM4.375 3.125V4.6875C4.40104 4.86979 4.50521 4.97396 4.6875 5C4.86979 4.97396 4.97396 4.86979 5 4.6875V3.125H12.5V4.6875C12.526 4.86979 12.6302 4.97396 12.8125 5C12.9948 4.97396 13.099 4.86979 13.125 4.6875V3.125H15C15.5208 3.15104 15.9635 3.33333 16.3281 3.67188C16.6667 4.03646 16.849 4.47917 16.875 5V6.875H0.625V5C0.651042 4.47917 0.833333 4.03646 1.17188 3.67188C1.53646 3.33333 1.97917 3.15104 2.5 3.125H4.375ZM13.0469 11.1719C13.151 11.0156 13.151 10.8594 13.0469 10.7031C12.8906 10.599 12.7344 10.599 12.5781 10.7031L8.125 15.1953L5.54688 12.5781C5.39062 12.474 5.23438 12.474 5.07812 12.5781C4.97396 12.7344 4.97396 12.8906 5.07812 13.0469L7.89062 15.8594C8.04688 15.9635 8.20312 15.9635 8.35938 15.8594L13.0469 11.1719Z"
+                        fill="#8750F7"
+                      />
+                    </svg>
+
+                    <span>{item.date}</span>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

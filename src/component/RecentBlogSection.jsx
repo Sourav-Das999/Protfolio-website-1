@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { imageUrl } from "../utils/imageUrl";
 
 const blogPosts = [
@@ -35,32 +36,47 @@ const RecentBlogSection = () => {
   return (
     <section className="bg-[#0f0715] text-white py-16 md:py-24 px-4 sm:px-6 md:px-12 font-['Sora',sans-serif] overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col items-center">
-        {/* Subtitle */}
-        <span className="text-[11px] font-bold tracking-[2.5px] text-[#8b5cf6] uppercase block mb-3 text-center">
-          BEHIND THE PIXELS
-        </span>
-
-        {/* Gradient Heading */}
-        <h2
-          className="text-3xl sm:text-4xl md:text-[45px] font-semibold tracking-[-0.9px] uppercase leading-tight md:leading-[54px] text-center mb-12 sm:mb-16"
-          style={{
-            background:
-              "linear-gradient(90deg, #FFFFFF 50%, rgba(255, 255, 255, 0.4) 50%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
+        
+        {/* Header Animation Container */}
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="flex flex-col items-center text-center"
         >
-          READ MY RECENT BLOG
-        </h2>
+          {/* Subtitle */}
+          <span className="text-[11px] font-bold tracking-[2.5px] text-[#8b5cf6] uppercase block mb-3 text-center">
+            BEHIND THE PIXELS
+          </span>
+
+          {/* Gradient Heading */}
+          <h2
+            className="text-3xl sm:text-4xl md:text-[45px] font-semibold tracking-[-0.9px] uppercase leading-tight md:leading-[54px] text-center mb-12 sm:mb-16"
+            style={{
+              background:
+                "linear-gradient(90deg, #FFFFFF 50%, rgba(255, 255, 255, 0.4) 50%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            READ MY RECENT BLOG
+          </h2>
+        </motion.div>
 
         {/* Blog Grid Container */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 w-full">
-          {blogPosts.map((post) => (
-            <a
+          {blogPosts.map((post, index) => (
+            <motion.a
               key={post.id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: index * 0.2, ease: "easeOut" }}
+              whileHover={{ y: -8 }}
               href={post.link}
-              className="bg-[#140C1C] border border-[#1d1429] hover:border-[#8750F7]/50 rounded-3xl p-5 flex flex-col justify-between group transition-all duration-300 shadow-xl"
+              className="bg-[#140C1C] border border-[#1d1429] hover:border-[#8750F7]/50 rounded-3xl p-5 flex flex-col justify-between group transition-colors duration-300 shadow-xl cursor-pointer"
             >
               <div>
                 {/* Image & Badge Container */}
@@ -89,7 +105,7 @@ const RecentBlogSection = () => {
                   {post.title}
                 </h3>
               </div>
-            </a>
+            </motion.a>
           ))}
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { imageUrl } from "../utils/imageUrl";
 
 const skillsData = [
@@ -39,13 +40,19 @@ const skillsData = [
 const SkillsSection = () => {
   return (
     <section className="bg-[#140C1C] text-white py-16 px-4 md:px-12 font-['Sora',sans-serif]">
-      <div className="max-w-6xl mx-auto">
+      <motion.div 
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="max-w-6xl mx-auto"
+      >
         {/* Top Header Section */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
             {/* Subtitle */}
             <span className="text-[11px] font-bold tracking-[2px] text-[#8b5cf6] uppercase block mb-3">
-              MY RECENT WORK
+              MY SKILLS
             </span>
 
             {/* Gradient Heading with Figma CSS Style */}
@@ -65,8 +72,10 @@ const SkillsSection = () => {
 
           {/* Learn More Button */}
           <div>
-            <button
-              className="flex items-center justify-center gap-2 text-white font-medium text-sm w-[179.33px] h-[49px] rounded-full transition-all duration-300 hover:opacity-90 hover:scale-105"
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center justify-center gap-2 text-white font-medium text-sm w-[179.33px] h-[49px] rounded-full transition-colors duration-300 cursor-pointer"
               style={{
                 background:
                   "linear-gradient(90deg, #8750F7 0%, #2A1454 51%, #8750F7 100%)",
@@ -87,16 +96,21 @@ const SkillsSection = () => {
                   d="M7 17L17 7M17 7H7M17 7V17"
                 />
               </svg>
-            </button>
+            </motion.button>
           </div>
         </div>
 
         {/* Skills Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {skillsData.map((skill) => (
-            <div
+          {skillsData.map((skill, index) => (
+            <motion.div
               key={skill.id}
-              className="bg-[#05020a] border border-[#1a1329] hover:border-purple-800/50 rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
+              whileHover={{ y: -6 }}
+              className="bg-[#05020a] border border-[#1a1329] hover:border-purple-800/50 rounded-2xl p-6 flex flex-col justify-between transition-colors duration-300 shadow-xl"
             >
               <div>
                 {/* Logo & Title Header */}
@@ -128,16 +142,19 @@ const SkillsSection = () => {
                   </span>
                 </div>
                 <div className="w-full bg-[#1e172e] h-[2px] rounded-full overflow-hidden">
-                  <div
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: skill.progressWidth }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
                     className="bg-white h-full rounded-full"
-                    style={{ width: skill.progressWidth }}
-                  ></div>
+                  ></motion.div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

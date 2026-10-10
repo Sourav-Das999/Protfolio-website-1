@@ -1,12 +1,20 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { imageUrl } from "../utils/imageUrl";
 
 const AboutSection = () => {
   return (
-    <section className="bg-[#0b0713] text-white py-16 md:py-24 px-4 sm:px-6 md:px-12 font-['Sora',sans-serif]">
+    <section className="bg-[#0b0713] text-white py-16 md:py-24 px-4 sm:px-6 md:px-12 font-['Sora',sans-serif] overflow-hidden">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-14 items-center">
-        {/* Left Side: Profile Image */}
-        <div className="lg:col-span-5 flex justify-center w-full">
+        
+        {/* Left Side: Profile Image with Scroll Animation */}
+        <motion.div 
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="lg:col-span-5 flex justify-center w-full"
+        >
           <div className="w-full max-w-[420px] lg:max-w-none h-[380px] sm:h-[480px] lg:h-[520px] rounded-2xl overflow-hidden bg-[#130d1d] border border-[#1a1329] shadow-2xl">
             <img
               src={imageUrl("about-me.png")}
@@ -14,10 +22,16 @@ const AboutSection = () => {
               className="w-full h-full object-cover object-top"
             />
           </div>
-        </div>
+        </motion.div>
 
-        {/* Right Side: Content Area */}
-        <div className="lg:col-span-7 flex flex-col justify-center text-left">
+        {/* Right Side: Content Area with Scroll Animation */}
+        <motion.div 
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          className="lg:col-span-7 flex flex-col justify-center text-left"
+        >
           {/* Subtitle */}
           <span className="text-[11px] font-bold tracking-[2px] text-[#8b5cf6] uppercase block mb-3">
             BEHIND THE PIXELS
@@ -77,10 +91,12 @@ const AboutSection = () => {
             </div>
           </div>
 
-          {/* Learn More Button with exact Figma Background CSS */}
+          {/* Learn More Button with Hover Effect */}
           <div>
-            <button
-              className="flex items-center justify-center gap-2 text-white font-medium text-sm w-[179.33px] h-[49px] rounded-full transition-all duration-300 hover:opacity-90 hover:scale-105 shadow-lg shadow-purple-900/20"
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center justify-center gap-2 text-white font-medium text-sm w-[179.33px] h-[49px] rounded-full transition-all duration-300 shadow-lg shadow-purple-900/20 cursor-pointer"
               style={{
                 background:
                   "linear-gradient(90deg, #8750F7 0%, #2A1454 51%, #8750F7 100%)",
@@ -102,9 +118,9 @@ const AboutSection = () => {
                   d="M7 17L17 7M17 7H7M17 7V17"
                 />
               </svg>
-            </button>
+            </motion.button>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

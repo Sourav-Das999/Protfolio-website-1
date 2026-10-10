@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { imageUrl } from "../utils/imageUrl";
 
 const testimonialsData = [
@@ -43,7 +44,13 @@ const testimonialsData = [
 const TestimonialsSection = () => {
   return (
     <section className="bg-[#0f0715] text-white py-16 md:py-24 px-4 sm:px-6 md:px-16 font-['Sora',sans-serif] overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-start justify-between gap-12 lg:gap-16">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="max-w-7xl mx-auto flex flex-col lg:flex-row items-start justify-between gap-12 lg:gap-16"
+      >
         {/* Left Column: Heading & Contact Button */}
         <div className="w-full lg:w-5/12 lg:sticky lg:top-24 z-20">
           <span className="text-[11px] font-bold tracking-[2.5px] text-[#8b5cf6] uppercase block mb-4">
@@ -66,9 +73,11 @@ const TestimonialsSection = () => {
           </h2>
 
           {/* Contact Me Button */}
-          <a
+          <motion.a
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             href="#contact"
-            className="flex items-center justify-center gap-2 text-white font-medium text-xs sm:text-sm w-[130px] sm:w-[179px] h-[40px] sm:h-[49px] rounded-full transition-all duration-300 hover:opacity-90 hover:scale-105"
+            className="flex items-center justify-center gap-2 text-white font-medium text-xs sm:text-sm w-[130px] sm:w-[179px] h-[40px] sm:h-[49px] rounded-full transition-colors duration-300 cursor-pointer"
             style={{
               background:
                 "linear-gradient(90deg, #8750F7 0%, #2A1454 51%, #8750F7 100%)",
@@ -89,7 +98,7 @@ const TestimonialsSection = () => {
                 d="M7 17L17 7M17 7H7M17 7V17"
               />
             </svg>
-          </a>
+          </motion.a>
         </div>
 
         {/* Right Column: Auto-Scrolling Container with Fade Out */}
@@ -103,13 +112,14 @@ const TestimonialsSection = () => {
           {/* Infinite Vertical Auto Scroll Area */}
           <div className="flex flex-col gap-6 animate-vertical-scroll hover:[animation-play-state:paused]">
             {[...testimonialsData, ...testimonialsData].map((client, index) => (
-              <div
+              <motion.div
                 key={`${client.id}-${index}`}
+                whileHover={{ y: -4 }}
                 className={`bg-[#140c1c] border ${
                   index % testimonialsData.length === 0
                     ? "border-[#8750F7]"
                     : "border-[#2a1745]/60 hover:border-[#8750F7]/60"
-                } rounded-2xl p-6 sm:p-8 transition-all duration-300 shadow-xl shrink-0`}
+                } rounded-2xl p-6 sm:p-8 transition-colors duration-300 shadow-xl shrink-0`}
               >
                 {/* Header: Avatar + Info + Stars */}
                 <div className="flex items-center justify-between gap-4 mb-6">
@@ -145,11 +155,11 @@ const TestimonialsSection = () => {
                 <p className="text-gray-300 text-xs sm:text-sm leading-relaxed opacity-90">
                   {client.feedback}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Auto Scroll Keyframe CSS Injection */}
       <style>{`
