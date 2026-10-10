@@ -1,11 +1,12 @@
 import React from "react";
+import { imageUrl } from "../utils/imageUrl";
 
 const Footer = () => {
   return (
     <footer className="w-full bg-[#0f0715] pt-12 font-['Sora',sans-serif] overflow-hidden">
       {/* 
         Footer Container with Exact Figma Radius: border-radius: 100px 100px 0px 0px 
-        Note: Put your footer background image inside public/image/footer-bg.png
+        Footer background image is served from public/image/footer-bg.png.
       */}
       <div
         className="relative w-full rounded-t-[60px] md:rounded-t-[100px] text-white pt-16 sm:pt-20 pb-8 px-6 sm:px-12 md:px-20 bg-cover bg-center bg-no-repeat overflow-hidden"
@@ -19,7 +20,10 @@ const Footer = () => {
         }}
       >
         {/* Optional: If you export the image from Figma, uncomment line below */}
-        <div className="absolute inset-0 bg-[url('../image/footer-bg.png')] bg-cover bg-center opacity-100 pointer-events-none" />
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-100 pointer-events-none"
+          style={{ backgroundImage: `url("${imageUrl("footer-bg.png")}")` }}
+        />
 
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Top Section: Grid Columns */}

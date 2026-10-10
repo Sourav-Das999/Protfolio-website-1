@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { imageUrl } from "../utils/imageUrl";
 
 const projectsData = [
   {
@@ -6,21 +7,21 @@ const projectsData = [
     title: "Deloitte",
     description:
       "How Deloitte found freedom, flexibility, and rebrand success.",
-    image: "../image/work-image-1.png",
+    image: "work-image-1.png",
     link: "#",
   },
   {
     id: 2,
     title: "New Age",
     description: "Project was about precision and information...",
-    image: "../image/work-image-2.png",
+    image: "work-image-2.png",
     link: "#",
   },
   {
     id: 3,
     title: "Sebastian",
     description: "Project was about precision and information...",
-    image: "../image/work-image-3.png",
+    image: "work-image-3.png",
     link: "#",
   },
 ];
@@ -163,7 +164,7 @@ const RecentWorkSection = () => {
                 {/* Image */}
                 <div className="w-full h-[250px] sm:h-[280px] md:h-[320px] rounded-2xl overflow-hidden mb-5 bg-[#140c1d]">
                   <img
-                    src={project.image}
+                    src={imageUrl(project.image)}
                     alt={project.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />

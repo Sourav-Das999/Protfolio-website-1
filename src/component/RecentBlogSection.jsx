@@ -1,4 +1,5 @@
 import React from "react";
+import { imageUrl } from "../utils/imageUrl";
 
 const blogPosts = [
   {
@@ -7,7 +8,7 @@ const blogPosts = [
     category: "Business",
     date: "Nov 01, 2025",
     badge: "Video",
-    image: "../image/editor-1.png",
+    image: "editor-1.png",
     link: "#",
   },
   {
@@ -16,7 +17,7 @@ const blogPosts = [
     category: "Development",
     date: "Aug 01, 2025",
     badge: "Editing",
-    image: "../image/editor-2.png",
+    image: "editor-2.png",
     link: "#",
   },
   {
@@ -25,7 +26,7 @@ const blogPosts = [
     category: "Portfolio",
     date: "Nov 01, 2025",
     badge: "Video",
-    image: "../image/editor-3.png",
+    image: "editor-3.png",
     link: "#",
   },
 ];
@@ -65,7 +66,7 @@ const RecentBlogSection = () => {
                 {/* Image & Badge Container */}
                 <div className="relative w-full h-[240px] sm:h-[260px] rounded-2xl overflow-hidden mb-6 bg-[#140c1d]">
                   <img
-                    src={post.image}
+                    src={imageUrl(post.image)}
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />

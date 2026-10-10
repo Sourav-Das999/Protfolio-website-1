@@ -1,11 +1,12 @@
 import React from "react";
+import { imageUrl } from "../utils/imageUrl";
 
 const testimonialsData = [
   {
     id: 1,
     name: "Tim Bailey",
     role: "SEO Specialist, Theme Junction",
-    image: "../image/Testimonial-1.png",
+    image: "Testimonial-1.png",
     rating: 4,
     feedback:
       "“Taylor is a professional Designer really helps my business by providing value to my business. Taylor is a professional Designer he really helps my business by providing value to my business. Taylor is a professional. Helps business providing value to my business. professional Designer he really helps my business",
@@ -14,7 +15,7 @@ const testimonialsData = [
     id: 2,
     name: "Brandon Fraser",
     role: "Senior Software Dev, Cosmic Sport",
-    image: "../image/Testimonial-2.png",
+    image: "Testimonial-2.png",
     rating: 4,
     feedback:
       "“Taylor is a professional Designer really helps my business by providing value to my business. Taylor is a professional Designer he really helps my business by providing value to my business.",
@@ -23,7 +24,7 @@ const testimonialsData = [
     id: 3,
     name: "Tim Bailey",
     role: "SEO Specialist, Theme Junction",
-    image: "../image/Testimonial-1.png",
+    image: "Testimonial-1.png",
     rating: 5,
     feedback:
       "“Taylor is a professional Designer really helps my business by providing value to my business. Taylor is a professional Designer he really helps my business by providing value to my business.",
@@ -32,7 +33,7 @@ const testimonialsData = [
     id: 4,
     name: "Brandon Fraser",
     role: "Senior Software Dev, Cosmic Sport",
-    image: "../image/Testimonial-2.png",
+    image: "Testimonial-2.png",
     rating: 4,
     feedback:
       "“Taylor is a professional Designer really helps my business by providing value to my business. Taylor is a professional Designer he really helps my business by providing value to my business.",
@@ -115,7 +116,7 @@ const TestimonialsSection = () => {
                   <div className="flex items-center gap-4">
                     <div className="w-14 h-14 rounded-full overflow-hidden border border-[#2a1745] shrink-0">
                       <img
-                        src={client.image}
+                        src={imageUrl(client.image)}
                         alt={client.name}
                         className="w-full h-full object-cover"
                       />

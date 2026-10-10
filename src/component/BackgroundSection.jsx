@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { imageUrl } from "../utils/imageUrl";
 
 // Sample data for Experiences, Education, and Awards
 const backgroundData = {
@@ -10,7 +11,7 @@ const backgroundData = {
       date: "2022 - 2023",
       description:
         "I'm winner of the world's most prestigious web design that has more-or-less normal awards in the fields.",
-      iconSrc: "../image/h4-work-1.png", // public ফোল্ডারের জন্য / দিয়ে শুরু
+      iconSrc: "h4-work-1.png",
     },
     {
       id: 2,
@@ -19,7 +20,7 @@ const backgroundData = {
       date: "2020 - 2023",
       description:
         "I'm winner of the world's most prestigious web design that has more-or-less normal awards in the fields.",
-      iconSrc: "../image/h4-work-2.png",
+      iconSrc: "h4-work-2.png",
     },
     {
       id: 3,
@@ -28,7 +29,7 @@ const backgroundData = {
       date: "2018 - 2020",
       description:
         "I'm winner of the world's most prestigious web design that has more-or-less normal awards in the fields.",
-      iconSrc: "../image/h4-work-3.png",
+      iconSrc: "h4-work-3.png",
     },
   ],
   Education: [
@@ -165,7 +166,7 @@ const BackgroundSection = () => {
                 <div>
                   {item.iconSrc ? (
                     <img
-                      src={item.iconSrc}
+                      src={imageUrl(item.iconSrc)}
                       alt={item.company}
                       className="w-full h-full object-contain"
                     />

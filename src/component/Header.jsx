@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { imageUrl } from "../utils/imageUrl";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -17,7 +18,7 @@ const Header = () => {
         {/* Logo Section */}
         <div className="flex items-center gap-3">
           <img
-            src="../image/logo.png"
+            src={imageUrl("logo.png")}
             alt="logo"
             className="h-8 md:h-10 object-contain"
           />

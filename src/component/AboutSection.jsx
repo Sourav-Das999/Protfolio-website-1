@@ -1,4 +1,5 @@
 import React from "react";
+import { imageUrl } from "../utils/imageUrl";
 
 const AboutSection = () => {
   return (
@@ -8,7 +9,7 @@ const AboutSection = () => {
         <div className="lg:col-span-5 flex justify-center w-full">
           <div className="w-full max-w-[420px] lg:max-w-none h-[380px] sm:h-[480px] lg:h-[520px] rounded-2xl overflow-hidden bg-[#130d1d] border border-[#1a1329] shadow-2xl">
             <img
-              src="../image/about-me.png"
+              src={imageUrl("about-me.png")}
               alt="Digital Marketer"
               className="w-full h-full object-cover object-top"
             />

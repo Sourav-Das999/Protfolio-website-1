@@ -1,5 +1,6 @@
 import React from "react";
 import VideoEditorBadge from "./VideoEditorBadge";
+import { imageUrl } from "../utils/imageUrl";
 
 const Hero = () => {
   return (
@@ -120,7 +121,7 @@ const Hero = () => {
         {/* Center: Main Image */}
         <div className="md:col-span-6 flex justify-center">
           <img
-            src="../image/hero-image.png"
+            src={imageUrl("hero-image.png")}
             alt="Gerold - Video Editor"
             className="w-full max-w-[320px] sm:max-w-[420px] md:max-w-[613px] h-auto md:h-[780px] object-cover"
           />

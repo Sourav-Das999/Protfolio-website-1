@@ -1,4 +1,5 @@
 import React from "react";
+import { imageUrl } from "../utils/imageUrl";
 
 const VideoEditorBadge = ({ width = 300, height = 300, className = "" }) => {
   return (
@@ -36,7 +37,7 @@ const VideoEditorBadge = ({ width = 300, height = 300, className = "" }) => {
 
         {/* Center Custom Circle Image */}
         <image
-          href="../image/hero-circle.png"
+          href={imageUrl("hero-circle.png")}
           x="105"
           y="105"
           width="290"

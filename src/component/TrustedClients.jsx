@@ -1,15 +1,16 @@
 import React from "react";
+import { imageUrl } from "../utils/imageUrl";
 
 // 7-ta Image Source List
 const logoList = [
-  "../image/Brand-1.png",
-  "../image/Brand-2.png",
-  "../image/Brand-3.png",
-  "../image/Brand-4.png",
-  "../image/Brand-5.png",
-  "../image/Brand-6.png",
-  "../image/Brand-7.png",
-  "../image/Brand-8.png",
+  "Brand-1.png",
+  "Brand-2.png",
+  "Brand-3.png",
+  "Brand-4.png",
+  "Brand-5.png",
+  "Brand-6.png",
+  "Brand-7.png",
+  "Brand-8.png",
 ];
 
 const TrustedClients = () => {
@@ -44,7 +45,7 @@ const TrustedClients = () => {
               className="flex items-center justify-center bg-[#050709] hover:bg-[#1a1228] border border-purple-900/20 rounded-xl px-8 py-4 min-w-[160px] h-[70px] shrink-0 transition-all duration-300"
             >
               <img
-                src={logoSrc}
+                src={imageUrl(logoSrc)}
                 alt={`Client Logo ${index + 1}`}
                 className="max-h-[35px] max-w-[120px] object-contain opacity-80 hover:opacity-100 transition-opacity"
               />

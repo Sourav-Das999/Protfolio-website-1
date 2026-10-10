@@ -1,4 +1,5 @@
 import React from "react";
+import { imageUrl } from "../utils/imageUrl";
 
 const skillsData = [
   {
@@ -7,7 +8,7 @@ const skillsData = [
     desc: "Adobe After Effects is a powerful software application used motion graphics.",
     percentage: "92%",
     progressWidth: "92%",
-    iconSrc: "../image/app-1.png",
+    iconSrc: "app-1.png",
   },
   {
     id: 2,
@@ -15,7 +16,7 @@ const skillsData = [
     desc: "Professional video editing software developed by Apple Inc., designed.",
     percentage: "80%",
     progressWidth: "80%",
-    iconSrc: "../image/app-2.png",
+    iconSrc: "app-2.png",
   },
   {
     id: 3,
@@ -23,7 +24,7 @@ const skillsData = [
     desc: "iMovie offers a range of powerful editing tools that allow users.",
     percentage: "85%",
     progressWidth: "85%",
-    iconSrc: "../image/app-3.png",
+    iconSrc: "app-3.png",
   },
   {
     id: 4,
@@ -31,7 +32,7 @@ const skillsData = [
     desc: "HitFilm Express is a free video editing and visual effects software developed.",
     percentage: "99%",
     progressWidth: "99%",
-    iconSrc: "../image/app-4.png",
+    iconSrc: "app-4.png",
   },
 ];
 
@@ -103,7 +104,7 @@ const SkillsSection = () => {
                   <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center bg-[#130d1d] shrink-0">
                     {/* Software Image Placeholder */}
                     <img
-                      src={skill.iconSrc}
+                      src={imageUrl(skill.iconSrc)}
                       alt={skill.title}
                       className="w-full h-full object-contain"
                     />
